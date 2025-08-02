@@ -1,18 +1,13 @@
-using Dashboard.Application.Interfaces;
-using Dashboard.Infrastructure.Repository;
-using System.Reflection.Metadata;
+using Dashboard.WebAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddOpenApi();
+builder.AddDatabase()
+    .AddApiServices()
+    .AddApplicationServices()
+    .AddAuthenticationServices();
 
 var app = builder.Build();
-
-builder.Services.AddScoped<IUserRepository , UserRepository>();
-
-builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssembly(typeof(AssemblyReference).Assembly));
-
 
 if (app.Environment.IsDevelopment())
 {
@@ -21,6 +16,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseExceptionHandler();
+
+app.UseAuthentication();
+
+app.UseAuthorization();
+
+app.MapControllers();
 
 await app.RunAsync();
-

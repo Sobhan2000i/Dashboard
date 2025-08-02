@@ -10,7 +10,12 @@ namespace Dashboard.Domain.Entities
 {
     public sealed class Customer
     {
-        public int Id { get; set; }
+        public Customer()
+        {
+            
+        }
+
+        public int Id { get; private set; }
         public string? Name { get; set; }
         public string? Lastname { get; set; }
         public string? CellPhone { get; set; }
@@ -21,13 +26,21 @@ namespace Dashboard.Domain.Entities
         public int LoyaltyScore { get; set; }
         public int Credit { get; set; }
         public int OpenTickets { get; set; }
-        public long MobilePurchaseAmountLastSixMonths { get; set; }
-        public long NonMobilePurchaseAmountLastSixMonths { get; set; }
+        public long MobileSpent { get; set; }
+        public long NonMobileSpent { get; set; }
         public DateTime LastLoginedAt { get; set; }
         public TimeSpan TimeSinceLastPurchase { get; set; }
         public List<ExpertNote>? ExpertNotes { get; set; }
         public List<Ticket>? Tickets { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public int? UpdaterId { get; set; }
+
+        public void UpdateStatus(Status status)
+        {
+            Gur
+            //validation
+            //assign
+            Status = status;
+        }
     }
 }

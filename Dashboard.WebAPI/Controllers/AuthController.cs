@@ -11,7 +11,7 @@ namespace Dashboard.WebAPI.Controllers
     [AllowAnonymous]
     public sealed class AuthController(IMediator mediatR) : ControllerBase
     {
-        [HttpPost("register")]
+        [HttpPost(nameof(Register))]
         public async Task<IActionResult> Register(RegisterUserDto dto)
         {
             var result = await mediatR.Send(new RegisterUserCommand(dto));
