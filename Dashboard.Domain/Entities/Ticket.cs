@@ -9,13 +9,17 @@ namespace Dashboard.Domain.Entities
 {
     public sealed class Ticket
     {
-        public int Id { get; set; }
-        public string? Title { get; set; }
-        public string? Description { get; set; }
-        public int CustomerId { get; set; }
-        public Status Status { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public string? ExternalLink { get; set; }
+        public int Id { get; private set; }
+        public string? Title { get; private set; }
+        public string? Description { get; private set; }
+        public int CustomerId { get; private set; }
+        public Status Status { get; private set; }
+        public DateTime CreatedAt { get; private set; }
+        public string? ExternalLink { get; private set; }
+        public Customer? Customer { get; private set; }
+
+        private Ticket() { }
+        
 
     }
 }

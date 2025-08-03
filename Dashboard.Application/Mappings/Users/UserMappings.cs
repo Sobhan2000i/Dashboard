@@ -9,13 +9,8 @@ namespace Dashboard.Application.Mappings.Users
     {
         public static User ToEntity(this RegisterUserDto dto)
         {
-            return new()
-            {
-                Id = $"u_{Guid.CreateVersion7()}",
-                Name = dto.Name,
-                UserName = dto.UserName,
-                CreatedAtUtc = DateTime.UtcNow,
-            };
+            string id = $"u_{Guid.CreateVersion7()}";
+            return new User(id , dto.UserName , dto.Name);
         }
     }
 }

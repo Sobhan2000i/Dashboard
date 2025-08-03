@@ -73,7 +73,7 @@ namespace Dashboard.Infrastructure.Repository
             }
 
             User user = registerUserDto.ToEntity();
-            user.IdentityId = identityUser.Id;
+            user.SetIdentityId(identityUser.Id);
 
             applicationDbContext.Users.Add(user);
             await applicationDbContext.SaveChangesAsync();

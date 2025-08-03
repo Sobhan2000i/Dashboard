@@ -11,6 +11,9 @@ namespace Dashboard.Infrastructure.Configurations
         {
             builder.HasKey(x => x.Id);
 
+            builder.Property(x => x.Id)
+                .ValueGeneratedOnAdd();
+
             builder.HasOne<Customer>()
                    .WithMany(x => x.Tickets!)
                    .HasForeignKey(x => x.CustomerId)

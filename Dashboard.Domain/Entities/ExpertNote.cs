@@ -8,10 +8,53 @@ namespace Dashboard.Domain.Entities
 {
     public sealed class ExpertNote
     {
-        public int Id { get; set; }
-        public int CustomerId { get; set; }
-        public string? Note { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public int CreaterId { get; set; }
+        public int Id { get; private set; }
+        public int CustomerId { get; private set; }
+        public string? Note { get; private set; }
+        public DateTime CreatedAt { get; private set; }
+        public DateTime UpdatedAt { get; private set; }
+        public bool IsDeleted { get; private set; } = false;
+        public string? CreaterId { get; private set; }
+        public Customer? Customer { get; private set; }
+
+        private ExpertNote() { }
+        public ExpertNote(int id, int customerId, string note, string createrId)
+        {
+            if (id <= 0)
+                throw new ArgumentOutOfRangeException(nameof(id), "Id must be greater than zero.");
+
+            if (customerId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(customerId), "CustomerId must be greater than zero.");
+
+            if (string.IsNullOrWhiteSpace(note))
+                throw new ArgumentException("Note cannot be empty.", nameof(note));
+
+            if (string.IsNullOrWhiteSpace(CreaterId))
+                throw new ArgumentException("CreaterId cannot be empty.", nameof(CreaterId));
+
+            Id = id;
+            CustomerId = customerId;
+            Note = note;
+            CreaterId = createrId;
+            IsDeleted = false;
+            CreatedAt = DateTime.UtcNow;
+        }
+        public void Update(int customerId, string note, string createrId)
+        {
+            if (customerId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(customerId), "CustomerId must be greater than zero.");
+
+            if (string.IsNullOrWhiteSpace(note))
+                throw new ArgumentException("Note cannot be empty.", nameof(note));
+
+            if (string.IsNullOrWhiteSpace(createrId))
+                throw new ArgumentException("CreaterId cannot be empty.", nameof(createrId));
+
+            CustomerId = customerId;
+            Note = note;
+            CreaterId = createrId;
+            UpdatedAt = DateTime.UtcNow;
+        }
+
     }
 }

@@ -10,10 +10,7 @@ namespace Dashboard.Domain.Entities
 {
     public sealed class Customer
     {
-        public Customer()
-        {
-            
-        }
+
 
         public int Id { get; private set; }
         public string? Name { get; set; }
@@ -34,13 +31,15 @@ namespace Dashboard.Domain.Entities
         public List<Ticket>? Tickets { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public int? UpdaterId { get; set; }
+        private Customer() { }
+        
 
-        public void UpdateStatus(Status status)
-        {
-            Gur
-            //validation
-            //assign
-            Status = status;
-        }
+        //public void UpdateStatus(Status status)
+        //{
+        //    Gur
+        //    //validation
+        //    //assign
+        //    Status = status;
+        //}
     }
 }

@@ -5,11 +5,12 @@ namespace Dashboard.Domain.Entities
     {
         public string Id { get; private set; }
         public string? IdentityId { get; private set; }
-        public string UserName { get; private set; }
-        public string Name { get; private set; }
+        public string? UserName { get; private set; }
+        public string? Name { get; private set; }
         public DateTime CreatedAtUtc { get; private set; }
         public DateTime? UpdatedAtUtc { get; private set; }
 
+        private User() { }
         public User(string id, string userName, string name)
         {
             if (string.IsNullOrWhiteSpace(id))
@@ -26,7 +27,6 @@ namespace Dashboard.Domain.Entities
             Name = name;
             CreatedAtUtc = DateTime.UtcNow;
         }
-
 
         public void SetIdentityId(string identityId)
         {
@@ -46,4 +46,5 @@ namespace Dashboard.Domain.Entities
             UpdatedAtUtc = DateTime.UtcNow;
 
         }
+    }
 }
