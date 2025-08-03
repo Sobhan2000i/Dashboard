@@ -11,7 +11,7 @@ namespace Dashboard.Application.Interfaces
 {
     public interface ICustomerRepository
     {
-        Task<CustomerWithExpertNoteDto> GetByIdAsync(int id);
+        Task<CustomerDto> GetByIdAsync(int id);
 
         Task<IEnumerable<Customer>> GetAllAsync();
     }

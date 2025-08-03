@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Dashboard.Application.DTOs.Customers
 {
-    public sealed class CustomerWithExpertNoteDto
+    public sealed class CustomerDto
     {
         public int Id { get;  init; }
         public string? Name { get; init; }
@@ -25,8 +25,8 @@ namespace Dashboard.Application.DTOs.Customers
         public long NonMobileSpent { get; init; }
         public DateTime LastLoginedAt { get; init; }
         public TimeSpan TimeSinceLastPurchase { get; init; }
-        public List<ExpertNote>? ExpertNotes { get; init; }
-        public List<Ticket>? Tickets { get; init; }
+        public List<ExpertNoteDto>? ExpertNotes { get; init; }
+        public List<TicketDto>? Tickets { get; init; }
         public DateTime? UpdatedAt { get; init; }
         public int? UpdaterId { get; init; }
     }

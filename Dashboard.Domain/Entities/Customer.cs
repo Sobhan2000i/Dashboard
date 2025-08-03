@@ -10,8 +10,6 @@ namespace Dashboard.Domain.Entities
 {
     public sealed class Customer
     {
-
-
         public int Id { get; private set; }
         public string? Name { get; set; }
         public string? Lastname { get; set; }

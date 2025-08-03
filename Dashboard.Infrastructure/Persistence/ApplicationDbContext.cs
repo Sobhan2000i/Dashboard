@@ -10,7 +10,7 @@ namespace Dashboard.Infrastructure.Persistence
 {
     public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
     {
-        public DbSet<ExpertNote> Customers { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<ExpertNote> ExpertNotes { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<User> Users { get; set; }

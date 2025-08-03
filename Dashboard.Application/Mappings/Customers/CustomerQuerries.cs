@@ -11,9 +11,9 @@ namespace Dashboard.Application.Mappings.Customers
 {
     public static class CustomerQuerries
     {
-        public static Expression<Func<Customer, CustomerWithExpertNoteDto>> ProjectToCustomerWithExpertNotesDto()
+        public static Expression<Func<Customer, CustomerDto>> ProjectToCustomerWithExpertNotesDto()
         {
-            return h => new CustomerWithExpertNoteDto
+            return h => new CustomerDto
             {
                 Id = h.Id,
                 Name = h.Name,
