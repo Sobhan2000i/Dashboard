@@ -9,10 +9,10 @@ namespace Dashboard.WebAPI.Controllers
     [Authorize]
     public class ExpertNoteController(IMediator mediatR) : ControllerBase
     {
-        [HttpGet]
-        public async Task<IActionResult> GetAllCustomerExpertNotes()
-        {
+        //[HttpGet]
+        //public async Task<IActionResult> GetAllCustomerExpertNotes()
+        //{
 
-        }
+        //}
     }
 }

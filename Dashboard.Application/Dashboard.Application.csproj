@@ -5,9 +5,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Commands\Customer\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Validators\" />
-    <Folder Include="Queries\" />
   </ItemGroup>
 
   <ItemGroup>

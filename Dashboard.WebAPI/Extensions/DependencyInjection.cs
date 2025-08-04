@@ -40,6 +40,7 @@ namespace Dashboard.WebAPI.Extensions
             builder.Services.AddTransient<ITokenProvider , TokenProvider>();
 
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 
 
             return builder;
