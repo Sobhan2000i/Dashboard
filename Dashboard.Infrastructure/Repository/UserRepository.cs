@@ -22,7 +22,7 @@ namespace Dashboard.Infrastructure.Repository
     public class UserRepository(UserManager<IdentityUser> userManager
     , ApplicationDbContext applicationDbContext
     , ApplicationIdentityDbContext applicationIdentityDbContext
-    , TokenProvider tokenProvider
+    , ITokenProvider tokenProvider
     , IOptions<JwtAuthOptions> options) : IUserRepository
     {
         public async Task<Result<AccessTokenDto>> LoginUser(LoginUserDto loginUserDto)

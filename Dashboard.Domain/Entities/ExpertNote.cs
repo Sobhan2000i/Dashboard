@@ -18,10 +18,8 @@ namespace Dashboard.Domain.Entities
         public Customer? Customer { get; private set; }
 
         private ExpertNote() { }
-        public ExpertNote(int id, int customerId, string note, string createrId)
-        {
-            if (id <= 0)
-                throw new ArgumentOutOfRangeException(nameof(id), "Id must be greater than zero.");
+        public ExpertNote( int customerId, string note, string createrId)
+        { 
 
             if (customerId <= 0)
                 throw new ArgumentOutOfRangeException(nameof(customerId), "CustomerId must be greater than zero.");
@@ -32,7 +30,6 @@ namespace Dashboard.Domain.Entities
             if (string.IsNullOrWhiteSpace(CreaterId))
                 throw new ArgumentException("CreaterId cannot be empty.", nameof(CreaterId));
 
-            Id = id;
             CustomerId = customerId;
             Note = note;
             CreaterId = createrId;
