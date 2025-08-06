@@ -87,7 +87,7 @@ namespace Dashboard.Infrastructure.Repository
             await transaction.CommitAsync();
 
 
-            return Result<AccessTokenDto>.Success(accessTokens); 
+            return Result<AccessTokenDto>.Success(new List<AccessTokenDto> { accessTokens }); 
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Dashboard.Application.DTOs.Customers
         public DateTime CreatedAt { get;  init; }
         public DateTime UpdatedAt { get;  init; }
         public bool IsDeleted { get;  init; } = false;
+        public int CustomerId { get;init; }
 
     }
 }

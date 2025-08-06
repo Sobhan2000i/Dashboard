@@ -9,18 +9,19 @@ namespace Dashboard.Domain.Shared
     public sealed class Result<T>
     {
         public bool IsSuccess { get; }
-        public T? Value { get; }
+        public List<T>? Data { get; }
         public Dictionary<string, string[]>? Errors { get; }
 
-        private Result(bool isSuccess, T? value, Dictionary<string, string[]>? errors)
+        private Result(bool isSuccess, List<T>? data, Dictionary<string, string[]>? errors)
         {
             IsSuccess = isSuccess;
-            Value = value;
+            Data = data;
             Errors = errors;
         }
 
-        public static Result<T> Success(T value) => new(true, value, null);
+        public static Result<T> Success(List<T> data) => new(true, data, null);
 
-        public static Result<T> Failure(Dictionary<string, string[]> errors) => new(false, default, errors);
+        public static Result<T> Failure(Dictionary<string, string[]> errors) => new(false, null, errors);
     }
+
 }
