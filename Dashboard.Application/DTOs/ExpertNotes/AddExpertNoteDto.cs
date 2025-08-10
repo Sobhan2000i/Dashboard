@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dashboard.Application.DTOs.ExpertNotes
 {
-    public sealed class UpsertsExpertNoteDto
+    public sealed class AddExpertNoteDto
     {
         public int CustomerId { get; set; }
         public string? Note { get; set; }

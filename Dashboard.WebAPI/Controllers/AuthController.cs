@@ -12,7 +12,7 @@ namespace Dashboard.WebAPI.Controllers
     public sealed class AuthController(IMediator mediatR) : ControllerBase
     {
         [HttpPost(nameof(Register))]
-        public async Task<IActionResult> Register(RegisterUserDto dto)
+        public async Task<IActionResult> Register([FromBody] RegisterUserDto dto)
         {
             var result = await mediatR.Send(new RegisterUserCommand(dto));
 
@@ -27,7 +27,7 @@ namespace Dashboard.WebAPI.Controllers
                     });
             }
 
-            return Ok(result.Value);
+            return Ok(result.Data);
         }
 
         [HttpPost("login")]
@@ -38,7 +38,7 @@ namespace Dashboard.WebAPI.Controllers
             if (!result.IsSuccess)
                 return Unauthorized(result.Errors);
 
-            return Ok(result.Value);
+            return Ok(result.Data);
         }
     }
 }

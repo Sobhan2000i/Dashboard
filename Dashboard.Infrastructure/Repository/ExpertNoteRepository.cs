@@ -4,6 +4,7 @@ using Dashboard.Application.DTOs.ExpertNotes;
 using Dashboard.Application.DTOs.Queries;
 using Dashboard.Application.Interfaces;
 using Dashboard.Application.Mappings.ExpertNotes;
+using Dashboard.Domain.Entities;
 using Dashboard.Domain.Shared;
 using Dashboard.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
@@ -18,7 +19,7 @@ namespace Dashboard.Infrastructure.Repository
 {
     public sealed class ExpertNoteRepository(ApplicationDbContext applicationDbContext) : IExpertNoteRepository
     {
-        public async Task<int> AddExpertNoteAsync(UpsertsExpertNoteDto expertNote)
+        public async Task<int> AddExpertNoteAsync(AddExpertNoteDto expertNote)
         {
 
             var expertnotes = expertNote.ToEntity();
@@ -43,22 +44,22 @@ namespace Dashboard.Infrastructure.Repository
             return await applicationDbContext.ExpertNotes.Where(e => e.CustomerId == customerid && e.Id == expertId).Select(ExpertNoteQueries.ProjectToDto()).FirstOrDefaultAsync();
         }
 
-        public Task UpdateExpertNoteAsync(ExpertNoteDto expertNoteDto)
+        public async Task<ExpertNote?> GetExpertNoteById(int expertnoteId)
         {
-            //var existingNote = await applicationDbContext.ExpertNotes
-            // .FirstOrDefaultAsync(e => e.Id == expertNoteDto.Id);
+            var expertNote = await applicationDbContext.ExpertNotes
+                .FirstOrDefaultAsync(e => e.Id == expertnoteId);
+            return expertNote;
 
-            //if (existingNote == null)
-            //{
-            //    throw new KeyNotFoundException($"ExpertNote with ID {expertNoteDto.Id} was not found.");
-            //}
+        }
 
-            //// Update fields
-            //existingNote.Note = expertNoteDto.Note;
-            //existingNote.UpdatedAt = DateTime.UtcNow;
+        public async Task UpdateExpertNoteAsync(UpdateExpertNote expertNoteDto)
+        {
+            var existingNote = await applicationDbContext.ExpertNotes
+             .FirstOrDefaultAsync(e => e.Id == expertNoteDto.Id);
 
-            //// Save changes
-            //await applicationDbContext.SaveChangesAsync();
+            existingNote!.Update(expertNoteDto.Note! , expertNoteDto.UpdaterId);
+
+            await applicationDbContext.SaveChangesAsync();
         }
     }
 }

@@ -43,7 +43,7 @@ namespace Dashboard.Infrastructure.Repository
             var tokenRequest = new TokenRequest(identityUser.Id, identityUser.UserName!);
             AccessTokenDto accessToken = tokenProvider.Create(tokenRequest);
 
-            return Result<AccessTokenDto>.Success(accessToken);
+            return Result<AccessTokenDto>.Success(new List<AccessTokenDto> { accessToken });
         }
 
         public async Task<Result<AccessTokenDto>> RegisterUserAsync(RegisterUserDto registerUserDto)

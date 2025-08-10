@@ -9,5 +9,5 @@ using System.Threading.Tasks;
 
 namespace Dashboard.Application.Commands.ExpertNotes
 {
-    public sealed record AddExpertNoteCommand(UpsertsExpertNoteDto AddExpertNoteDto) : IRequest<Result<int>>;
+    public sealed record AddExpertNoteCommand(AddExpertNoteDto AddExpertNoteDto) : IRequest<Result<int>>;
 }

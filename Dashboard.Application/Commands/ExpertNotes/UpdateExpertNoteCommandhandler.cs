@@ -1,4 +1,5 @@
 ﻿using Dashboard.Application.Interfaces;
+using Dashboard.Domain.Shared;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,16 +9,30 @@ using System.Threading.Tasks;
 
 namespace Dashboard.Application.Commands.ExpertNotes
 {
-    public sealed class UpdateExpertNoteCommandhandler(IExpertNoteRepository expertNoteRepository) : IRequestHandler<UpdateExpertNoteCommand>
+    public sealed class UpdateExpertNoteCommandhandler(IExpertNoteRepository expertNoteRepository) : IRequestHandler<UpdateExpertNoteCommand, Result<Unit>>
     {
-        public async Task Handle(UpdateExpertNoteCommand request, CancellationToken cancellationToken)
+        public async Task<Result<Unit>> Handle(UpdateExpertNoteCommand request, CancellationToken cancellationToken)
         {
-            if (await expertNoteRepository.GetCustomerExpertNoteByIdAsync(request.ExpertNoteDto.CustomerId , request.ExpertNoteDto.Id) == null)
+            if (await expertNoteRepository.GetCustomerExpertNoteByIdAsync(request.dto.CustomerId, request.dto.Id) == null)
             {
-                return;
+                var errors = new Dictionary<string, string[]>
+                {
+                    { "error", new[] { $"Customer with id {request.dto.CustomerId} doesn't exists." } }
+                };
+                return Result<Unit>.Failure(errors);
             }
-            //make it return Result
-            await expertNoteRepository.UpdateExpertNoteAsync(request.ExpertNoteDto);
+            if (await expertNoteRepository.GetExpertNoteById (request.dto.Id) == null)
+            {
+                var errors = new Dictionary<string, string[]>
+                {
+                    { "error", new[] { $"ExpertNote with id {request.dto.Id} doesn't exists." } }
+                };
+                return Result<Unit>.Failure(errors);
+            }
+
+            await expertNoteRepository.UpdateExpertNoteAsync(request.dto);
+
+            return Result<Unit>.Success(new List<Unit> { Unit.Value });
         }
     }
 }

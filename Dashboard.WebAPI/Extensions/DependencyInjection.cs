@@ -1,4 +1,5 @@
-﻿using Dashboard.Application.Interfaces;
+﻿using Dashboard.Application.Commands.Users;
+using Dashboard.Application.Interfaces;
 using Dashboard.Infrastructure.Persistence;
 using Dashboard.Infrastructure.Repository;
 using Dashboard.Infrastructure.Services.Security;
@@ -9,6 +10,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 using System.Reflection.Metadata;
+using Dashboard.Application;
 using System.Text;
 
 namespace Dashboard.WebAPI.Extensions
@@ -35,13 +37,13 @@ namespace Dashboard.WebAPI.Extensions
             builder.Services.AddHttpContextAccessor();
 
             builder.Services.AddMediatR(cfg =>
-            cfg.RegisterServicesFromAssembly(typeof(AssemblyReference).Assembly));
+            cfg.RegisterServicesFromAssembly(typeof(Application.AssemblyReference).Assembly));
 
             builder.Services.AddTransient<ITokenProvider , TokenProvider>();
 
             builder.Services.AddTransient<IUserRepository, UserRepository>();
             builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
-
+            builder.Services.AddTransient<IExpertNoteRepository, ExpertNoteRepository>();
 
             return builder;
         }

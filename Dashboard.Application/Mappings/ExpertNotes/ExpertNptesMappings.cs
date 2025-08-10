@@ -10,7 +10,7 @@ namespace Dashboard.Application.Mappings.ExpertNotes
 {
     public static class ExpertNptesMappings
     {
-        public static ExpertNote ToEntity(this UpsertsExpertNoteDto addExpertNoteDto)
+        public static ExpertNote ToEntity(this AddExpertNoteDto addExpertNoteDto)
         {
             return new ExpertNote(addExpertNoteDto.CustomerId , addExpertNoteDto.Note! , addExpertNoteDto.CreaterId!);
         }

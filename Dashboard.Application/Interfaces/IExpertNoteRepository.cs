@@ -1,5 +1,6 @@
 ﻿using Dashboard.Application.DTOs.Customers;
 using Dashboard.Application.DTOs.ExpertNotes;
+using Dashboard.Domain.Entities;
 using Dashboard.Domain.Shared;
 using System;
 using System.Collections.Generic;
@@ -13,8 +14,9 @@ namespace Dashboard.Application.Interfaces
     {
         Task<List<ExpertNoteDto>> GetCustomerExpertNoteAsync(int id);
         Task<ExpertNoteDto?> GetCustomerExpertNoteByIdAsync(int customerid, int expertId);
-        Task< int> AddExpertNoteAsync(UpsertsExpertNoteDto expertNote);
+        Task< int> AddExpertNoteAsync(AddExpertNoteDto expertNote);
         Task DeleteExpertNoteAsync(int id);
-        Task UpdateExpertNoteAsync(ExpertNoteDto expertNoteDto);
+        Task UpdateExpertNoteAsync(UpdateExpertNote expertNoteDto);
+        Task<ExpertNote?> GetExpertNoteById(int expertnoteId);
     }
 }

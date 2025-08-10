@@ -13,6 +13,7 @@ namespace Dashboard.Domain.Entities
         public string? Note { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
+        public int UpdaterId { get; private set; }
         public bool IsDeleted { get; private set; } = false;
         public string? CreaterId { get; private set; }
         public Customer? Customer { get; private set; }
@@ -36,20 +37,16 @@ namespace Dashboard.Domain.Entities
             IsDeleted = false;
             CreatedAt = DateTime.UtcNow;
         }
-        public void Update(int customerId, string note, string createrId)
+        public void Update( string note, int updaterId)
         {
-            if (customerId <= 0)
-                throw new ArgumentOutOfRangeException(nameof(customerId), "CustomerId must be greater than zero.");
-
             if (string.IsNullOrWhiteSpace(note))
                 throw new ArgumentException("Note cannot be empty.", nameof(note));
+            if (updaterId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(updaterId), "UpdaterId must be greater than zero.");
 
-            if (string.IsNullOrWhiteSpace(createrId))
-                throw new ArgumentException("CreaterId cannot be empty.", nameof(createrId));
 
-            CustomerId = customerId;
             Note = note;
-            CreaterId = createrId;
+            UpdaterId = updaterId;
             UpdatedAt = DateTime.UtcNow;
         }
 

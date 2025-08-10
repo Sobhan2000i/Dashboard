@@ -15,7 +15,7 @@ namespace Dashboard.WebAPI.Controllers
     public class ExpertNoteController(IMediator mediatR) : ControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> GetAllCustomerExpertNotes(UpsertsExpertNoteDto addExpertNoteDto)
+        public async Task<IActionResult> GetAllCustomerExpertNotes(AddExpertNoteDto addExpertNoteDto)
         {
             var expertNoteResult = await mediatR.Send(new AddExpertNoteCommand(addExpertNoteDto));
             
